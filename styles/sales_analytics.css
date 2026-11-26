@@ -1,0 +1,6 @@
+/* Only the Sales Analytics page's named containers are affected. */
+.st-key-bizmar_sales_filters {border-radius:24px;border-color:var(--forest-border,#ecdfe1);}
+.st-key-bizmar_sales_filters [data-testid="stCaptionContainer"] {color:var(--forest-secondary,#655e6c);}
+[class*="st-key-bizmar_sales_kpi_"] [data-testid="stMetric"] {box-sizing:border-box;min-height:132px;}
+[data-testid="stAppViewContainer"] [class*="st-key-bizmar_sales_kpi_"] [data-testid="stMetricValue"],
+[data-testid="stAppViewContainer"] [class*="st-key-bizmar_sales_kpi_"] [data-testid="stMetricValue"] * {font-size:28px!important;font-weight:700!important;font-variant-numeric:tabular-nums;line-height:1.3;}

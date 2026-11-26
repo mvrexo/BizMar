@@ -1,0 +1,9 @@
+[server]
+enableStaticServing = true
+
+[theme]
+# Native canvas tables use Streamlit's font configuration rather than CSS.
+font = "Inter"
+headingFont = "Plus Jakarta Sans"
+metricValueFontSize = "32px"
+metricValueFontWeight = 700

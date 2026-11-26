@@ -1,0 +1,67 @@
+# Private UAT configuration; templates remain shareable.
+.streamlit/*.toml
+!.streamlit/config.toml
+.env
+.env.*
+*.sqlite3
+*.sqlite3-*
+*.bak
+__pycache__/
+*.pyc
+*.log
+*service-account*.json
+*service_account*.json
+nour-sweets-*.json
+uat/private/
+
+# Python virtual environment
+.venv/
+venv/
+.pytest_cache/
+.vscode/
+
+# Local AI agent configuration
+.agents/
+.claude/
+
+# Private UAT, test logs, backups and screenshots
+uat/
+
+# Local development files
+.streamlit/secrets.toml
+.streamlit/uat-approval.toml
+
+# Private business product photos
+assets/uploads/products/
+
+# Private Nour Sweet branding
+assets/nour_sweet.png
+
+docs/google_sheets_activation_result.md
+
+docs/google_sheets_activation_plan.md
+
+docs/google_sheets_preview_uat.md
+
+docs/google_sheets_sync.md
+
+docs/google_sheets_sync_monitor.md
+
+docs/product_local_uat.md
+
+docs/customer_directory.md
+
+docs/customer_messages.md
+
+docs/malaysia_map_fix.md
+
+docs/orders_management.md
+
+docs/orders_reference_redesign.md
+docs/page_header_alignment.md
+docs/products_catalogue.md
+docs/runtime_environment_fix.md
+docs/sales_analytics.md
+docs/typography_cleanup.md
+
+payment_receipts_setup.sql

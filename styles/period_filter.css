@@ -1,0 +1,74 @@
+/* Scoped to sales-period controls; native popovers stay in Streamlit's portal. */
+.st-key-bizmar_period_calendar,
+.st-key-bizmar_period_modes {
+  --period-selected: #24543D;
+  --period-selected-text: #F5F7F3;
+  --period-accent: #F3B6BF;
+  --period-surface: var(--forest-card, #FFFAF6);
+  --period-text: var(--forest-text, #24332E);
+  --period-border: var(--forest-border, #D3DED5);
+}
+.st-key-bizmar_period_calendar { width: 100%; min-width: 0; }
+.st-key-bizmar_period_calendar [data-testid="stHorizontalBlock"],
+.st-key-bizmar_period_modes [data-testid="stHorizontalBlock"] {
+  display: flex !important; flex-wrap: nowrap !important; gap: 6px !important;
+  align-items: center;
+}
+.st-key-bizmar_period_calendar [data-testid="stColumn"],
+.st-key-bizmar_period_modes [data-testid="stColumn"] {
+  min-width: 0 !important; flex: 1 1 0 !important; width: auto !important;
+}
+.st-key-bizmar_period_navigation [data-testid="stColumn"]:nth-child(2) { flex-grow: 4 !important; text-align: center; }
+.st-key-bizmar_period_calendar [data-testid="stButton"] button,
+.st-key-bizmar_period_modes [data-testid="stButton"] button {
+  min-height: 40px; padding: 4px !important; border-radius: 10px !important;
+  background: var(--period-surface) !important; color: var(--period-text) !important;
+  border: 1px solid var(--period-border) !important;
+}
+.st-key-bizmar_period_calendar [data-testid="stButton"] button p,
+.st-key-bizmar_period_modes [data-testid="stButton"] button p { color: inherit !important; }
+[data-testid="stApp"] :is(.st-key-bizmar_period_calendar,.st-key-bizmar_period_modes) [data-testid="stButton"] button[kind="primary"],
+.st-key-bizmar_period_calendar [data-testid="stButton"] button[kind="primary"],
+.st-key-bizmar_period_modes [data-testid="stButton"] button[kind="primary"] {
+  background: var(--period-selected) !important; color: var(--period-selected-text) !important;
+  border-color: var(--period-selected) !important;
+}
+.st-key-bizmar_period_calendar [data-testid="stButton"] button[kind="primary"] p,
+.st-key-bizmar_period_modes [data-testid="stButton"] button[kind="primary"] p { color: var(--period-selected-text) !important; }
+.st-key-bizmar_period_calendar button:hover,
+.st-key-bizmar_period_modes button:hover { border-color: var(--period-accent) !important; }
+.st-key-bizmar_period_calendar button:focus-visible,
+.st-key-bizmar_period_modes button:focus-visible { outline: 2px solid var(--period-accent); outline-offset: 2px; }
+.st-key-bizmar_period_day_grid [data-testid="stMarkdownContainer"] { text-align: center; }
+.bizmar-period-weekday { font-size: 12px; font-weight: 600; }
+[data-testid="stPopoverBody"]:has(.st-key-bizmar_period_calendar) {
+  width: min(420px, calc(100vw - 24px)) !important;
+  max-width: calc(100vw - 24px) !important; overflow: visible !important;
+  z-index: 1000001 !important;
+}
+[data-testid="stPopoverBody"]:has(.st-key-bizmar_period_day_grid) {
+  max-height: calc(100dvh - 32px) !important; overflow-y: auto !important;
+}
+/* Streamlit 1.66 uses a portalled React Aria calendar for st.date_input. */
+body:has(.st-key-bizmar_period_calendar [data-testid="stDateInputCalendarButton"][aria-expanded="true"]) [data-testid="stDateInputCalendar"] {
+  background: var(--forest-card, #FFFAF6) !important;
+  color: var(--forest-text, #24332E) !important;
+  border: 1px solid var(--forest-border, #D3DED5) !important;
+  border-radius: 12px; box-shadow: 0 8px 28px #173B2B26;
+  z-index: 1000002 !important;
+}
+body:has(.st-key-bizmar_period_calendar [data-testid="stDateInputCalendarButton"][aria-expanded="true"]) [data-testid="stDateInputCalendar"] :is(button,th,[role="button"]) {
+  color: var(--forest-text, #24332E) !important;
+}
+body:has(.st-key-bizmar_period_calendar [data-testid="stDateInputCalendarButton"][aria-expanded="true"]) [data-testid="stDateInputCalendar"] [data-selected="true"] {
+  background: #24543D !important; color: #F5F7F3 !important;
+}
+body:has(.st-key-bizmar_period_calendar [data-testid="stDateInputCalendarButton"][aria-expanded="true"]) [data-testid="stDateInputCalendar"] [role="button"]:hover {
+  outline: 2px solid #F3B6BF; outline-offset: -2px;
+}
+/* Target only the portal that owns this calendar, never dashboard cards. */
+[data-baseweb="popover"]:has(.st-key-bizmar_period_calendar) { z-index: 1000001 !important; }
+@media (max-width: 600px) {
+  .st-key-bizmar_period_calendar [data-testid="stHorizontalBlock"] { gap: 3px !important; }
+  .st-key-bizmar_period_calendar button { min-height: 36px; }
+}

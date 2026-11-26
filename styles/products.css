@@ -1,0 +1,99 @@
+/* Catalogue-only styles reuse BizMar's light/dark forest and typography tokens. */
+.st-key-bizmar_products, .st-key-bizmar_product_editor, .st-key-bizmar_product_details {
+  --product-surface: var(--forest-card, #FFFAF6);
+  --product-text: var(--forest-text, #24332E);
+  --product-muted: var(--forest-secondary, #596A60);
+  --product-border: var(--forest-border, #E5DAD9);
+  --product-primary: var(--forest-primary, #174C35);
+  --product-primary-text: var(--forest-primary-text, #FFFFFF);
+  color: var(--product-text);
+  font-family: var(--nour-body-font, Inter, sans-serif);
+}
+.st-key-bizmar_products [class*="st-key-product_card_"] {
+  background: var(--product-surface) !important;
+  border: 1px solid var(--product-border) !important;
+  border-radius: 20px !important; padding: 16px !important;
+  box-shadow: 0 4px 16px rgba(36,51,46,.04);
+}
+.st-key-bizmar_products h1 { font-size:var(--bizmar-title-size,28px) !important; }
+.st-key-bizmar_products h1, .st-key-bizmar_products h3, .st-key-bizmar_product_editor h3 {
+  font-family: var(--nour-heading-font, 'Plus Jakarta Sans', sans-serif) !important;
+  letter-spacing: normal !important; overflow-wrap:anywhere;
+}
+.st-key-bizmar_products .product-copy h3 {
+  font-size:19px !important; font-weight:600 !important; line-height:1.4;
+  color:var(--product-text) !important; margin:12px 0 4px; padding:0;
+  min-height:54px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.st-key-bizmar_products .product-image, .st-key-bizmar_product_details .product-image {
+  height:190px; width:100%; border-radius:13px; overflow:hidden;
+  background:var(--forest-hover, #F0EDE5); display:flex; align-items:center; justify-content:center;
+}
+.st-key-bizmar_products .product-image img, .st-key-bizmar_product_details .product-image img {
+  width:100%; height:100%; object-fit:cover; object-position:center; display:block;
+}
+.st-key-bizmar_product_details .product-detail-image { height:260px; }
+.st-key-bizmar_products .product-no-image, .st-key-bizmar_product_details .product-no-image {
+  color:var(--product-muted); font-size:14px;
+}
+.st-key-bizmar_products .product-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:14px; }
+.st-key-bizmar_products .product-category { color:var(--product-muted); font-size:var(--bizmar-caption-size,14px); overflow-wrap:anywhere; }
+.st-key-bizmar_products .product-status { border:1px solid var(--product-border); border-radius:30px; padding:3px 9px; font-size:var(--bizmar-caption-size,14px); font-weight:500; white-space:nowrap; }
+.st-key-bizmar_products .is-active { background:#DCEEE2; color:#224C35; }
+.st-key-bizmar_products .is-archived { background:#F7DEE3; color:#783E50; }
+.st-key-bizmar_products .product-packaging { color:var(--product-muted) !important; font-size:14px !important; min-height:21px; margin:0 0 12px; }
+.st-key-bizmar_products .product-price { font-size:var(--bizmar-price-size,24px); font-weight:700; font-variant-numeric:tabular-nums; color:var(--product-text); }
+.st-key-bizmar_products .product-cost { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px; font-size:var(--bizmar-caption-size,14px); color:var(--product-muted); margin:5px 0 12px; font-variant-numeric:tabular-nums; }
+.st-key-bizmar_products .product-cost span { color:var(--product-text); }
+.st-key-catalogue_kpis [data-testid="stMetric"] { min-height:90px !important; background:var(--product-surface) !important; border-color:var(--product-border) !important; padding:16px !important; }
+.st-key-catalogue_kpis [data-testid="stMetricValue"] p { font-size:var(--bizmar-kpi-size,32px) !important; font-weight:700 !important; font-variant-numeric:tabular-nums; color:var(--product-text) !important; }
+.st-key-bizmar_products [data-testid="stCaptionContainer"],
+.st-key-bizmar_products [data-testid="stCaptionContainer"] p { color:var(--product-muted) !important; opacity:1 !important; }
+.st-key-bizmar_products [data-testid="stButton"] button[kind="primary"], .st-key-bizmar_product_editor [data-testid="stButton"] button[kind="primary"] {
+  background:var(--product-primary) !important; color:var(--product-primary-text) !important;
+}
+.st-key-bizmar_products [data-testid="stButton"] button p, .st-key-bizmar_product_editor [data-testid="stButton"] button p { color:inherit !important; }
+.st-key-bizmar_product_editor .product-profit { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; background:var(--forest-hover, #ECF3E8); border:1px solid var(--product-border); color:var(--product-text); padding:12px 16px; border-radius:12px; }
+[role="dialog"]:has(:is(.st-key-bizmar_product_editor,.st-key-bizmar_product_details)) { background:var(--forest-card,#FFFAF6) !important; color:var(--forest-text,#24332E) !important; }
+.st-key-bizmar_product_editor :is(input,[data-testid="stWidgetLabel"] p), .st-key-bizmar_product_details :is(h3,p) { color:var(--product-text) !important; }
+.st-key-bizmar_product_editor [data-testid="stCaptionContainer"],
+.st-key-bizmar_product_editor [data-testid="stCaptionContainer"] p { color:var(--product-muted) !important; opacity:1 !important; }
+.st-key-bizmar_product_editor :is([data-testid="stTextInputRootElement"],[data-testid="stNumberInputContainer"],input,[data-baseweb="select"] > div) {
+  background:var(--forest-bg,#FFFFFF) !important; color:var(--product-text) !important; border-color:var(--product-border) !important;
+}
+.st-key-bizmar_product_editor [data-baseweb="select"] :is(div,span,svg) { color:var(--product-text) !important; }
+.st-key-bizmar_product_editor input::placeholder { color:var(--product-muted) !important; opacity:1; }
+.st-key-bizmar_product_editor :is([data-testid="stPopoverButton"],[data-testid="stButton"], [data-testid="stNumberInput"]) button:not([kind="primary"]) {
+  background:var(--forest-hover,#FFFFFF) !important; color:var(--product-text) !important; border-color:var(--product-border) !important;
+}
+.st-key-bizmar_product_editor button :is(p,svg,span) { color:inherit !important; }
+.st-key-bizmar_product_editor button[data-testid="stPopoverButton"],
+.st-key-bizmar_product_details button[data-testid="stPopoverButton"] {
+  background:var(--forest-hover,#FFFFFF) !important; color:var(--product-text) !important; border-color:var(--product-border) !important;
+}
+.st-key-bizmar_product_details button[data-testid="stPopoverButton"] :is(p,span) { color:inherit !important; }
+.st-key-bizmar_product_editor [data-baseweb="select"] > div > div { background:var(--forest-bg,#FFFFFF) !important; }
+body:has(:is(.st-key-bizmar_product_editor,.st-key-bizmar_product_details)) [data-testid="stPopoverBody"] {
+  background:var(--forest-card,#FFFAF6) !important; color:var(--forest-text,#24332E) !important;
+  border-color:var(--forest-border,#E5DAD9) !important;
+}
+body:has(.st-key-bizmar_product_editor) [data-testid="stPopoverBody"] :is([data-testid="stFileUploaderDropzone"],button) {
+  background:var(--forest-bg,#FFFFFF) !important; color:var(--forest-text,#24332E) !important;
+}
+[role="dialog"]:has(:is(.st-key-bizmar_product_editor,.st-key-bizmar_product_details)) button[aria-label="Close"] { color:var(--forest-text,#24332E) !important; }
+.st-key-bizmar_products button:focus-visible { outline:2px solid var(--product-primary); outline-offset:3px; }
+.st-key-catalogue_list .product-copy h3 { min-height:0; }
+@media (max-width:1000px) and (min-width:641px) {
+  .st-key-catalogue_grid > [data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"] { flex-wrap:wrap; }
+  .st-key-catalogue_grid > [data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { min-width:calc(50% - 16px) !important; flex:1 1 calc(50% - 16px) !important; }
+}
+@media (max-width:640px) {
+  .st-key-catalogue_kpis [data-testid="stHorizontalBlock"] { flex-wrap:nowrap !important; gap:8px !important; }
+  .st-key-catalogue_kpis [data-testid="stColumn"] { min-width:0 !important; flex:1 1 0 !important; width:0 !important; }
+  .st-key-catalogue_kpis [data-testid="stMetricLabel"] p { font-size:var(--bizmar-body-size,15px) !important; white-space:normal !important; line-height:1.4 !important; }
+  .st-key-catalogue_kpis [data-testid="stMetricValue"] p { font-size:var(--bizmar-kpi-size,28px) !important; }
+  .st-key-catalogue_grid > [data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { min-width:100% !important; }
+  .st-key-bizmar_products h1 { font-size:var(--bizmar-title-size,26px) !important; }
+  .st-key-catalogue_kpis [data-testid="stMetric"] { padding:10px !important; min-width:0 !important; }
+  .st-key-bizmar_product_editor [data-testid="stColumn"] { min-width:0 !important; }
+}

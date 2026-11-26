@@ -1,0 +1,50 @@
+/* Sole source of header sizing/alignment; the existing controls retain their CSS. */
+:root { --bizmar-header-font:'Poppins',Arial,sans-serif; }
+.st-key-nour_shell_header {
+  box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;
+  min-height:80px;height:auto;overflow:visible;
+  padding:16px 24px;margin:0 0 24px;border-radius:24px;
+  border:1px solid var(--forest-border,#f1e2e2);
+  background:linear-gradient(115deg,var(--forest-card,#fffdf8),var(--forest-hover,#fff0f1) 72%,var(--forest-card,#f0f4e9));
+  box-shadow:var(--nour-shadow),var(--nour-reflection);
+}
+.st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) {
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:24px;
+}
+.st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) > [data-testid="stColumn"] {
+  box-sizing:border-box;min-width:0;width:auto!important;flex:1 1 0!important;
+}
+.st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) > [data-testid="stColumn"]:nth-child(2) {
+  flex:0 1 auto!important;text-align:right;
+}
+.st-key-nour_shell_header:has(.st-key-nour_shell_actions) [data-testid="stHorizontalBlock"]:has(.nour-header-title) > [data-testid="stColumn"]:last-child {
+  flex:0 0 auto!important;width:auto!important;
+}
+.st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) > [data-testid="stColumn"] > [data-testid="stVerticalBlock"] {gap:0;justify-content:center;}
+.st-key-nour_shell_header [data-testid="stMarkdownContainer"],
+.st-key-nour_shell_header [data-testid="stMarkdownContainer"] p {margin:0!important;padding:0;}
+.st-key-nour_shell_header [data-testid="stMarkdownContainer"] .nour-header-title {
+  font-family:var(--bizmar-header-font)!important;font-size:28px!important;font-weight:600!important;
+  line-height:1.25!important;letter-spacing:normal;margin:0!important;padding:0!important;
+  color:var(--forest-text,var(--nour-ink,#302f35))!important;
+  max-width:100%;overflow-wrap:anywhere;white-space:normal;
+}
+.st-key-nour_shell_header .bizmar-page-date {
+  display:block;font-family:var(--bizmar-header-font)!important;font-size:13px!important;font-weight:400!important;
+  line-height:1.5;margin:0;padding:0;color:var(--forest-secondary,#655e6c)!important;
+  white-space:nowrap;max-width:100%;
+}
+.bizmar-page-greeting {font-family:var(--nour-body-font);font-size:14px;font-weight:500;line-height:1.5;color:var(--forest-secondary,var(--nour-matcha-strong));margin:0 0 8px;}
+/* Existing standalone page renderers keep their titles for isolated use. Once
+   the app shell supplies a page header, suppress the duplicate native H1 only. */
+[data-testid="stMainBlockContainer"]:has(.nour-header-title) [data-testid="stElementContainer"]:has(h1:not(.nour-header-title)) {display:none;}
+@supports (backdrop-filter:blur(16px)) {.st-key-nour_shell_header {backdrop-filter:blur(16px);}}
+@media(max-width:700px) {
+  .st-key-nour_shell_header {padding:16px;border-radius:24px;}
+  .st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) {flex-wrap:wrap;gap:12px;}
+  .st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) > [data-testid="stColumn"]:first-child {flex:1 1 100%!important;width:100%!important;}
+  .st-key-nour_shell_header [data-testid="stHorizontalBlock"]:has(.nour-header-title) > [data-testid="stColumn"]:nth-child(2) {flex:1 1 0!important;text-align:left;}
+  .st-key-nour_shell_header .bizmar-page-date {white-space:normal;overflow-wrap:normal;}
+  .st-key-nour_shell_header [data-testid="stMarkdownContainer"] .nour-header-title {font-size:26px!important;}
+}
+@media(prefers-reduced-transparency:reduce) {.st-key-nour_shell_header {background:var(--forest-card,var(--nour-surface))!important;backdrop-filter:none;}}

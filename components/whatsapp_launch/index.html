@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link id="bizmar-fonts" rel="stylesheet" href="/app/static/fonts/bizmar-fonts.css"><style>
+body{margin:0;font:600 14px 'Plus Jakarta Sans',Arial,sans-serif}a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:44px;padding:10px 18px;border:1px solid #88a98a;border-radius:14px;background:#dce9cb;color:#173b2b;text-decoration:none}a:hover{background:#c7dbb5}a:focus-visible{outline:3px solid #f3b6bf;outline-offset:2px}a[aria-disabled=true]{opacity:.55;cursor:not-allowed}
+</style></head><body><a id="launch" target="_blank" rel="noopener noreferrer" aria-disabled="true">Send via WhatsApp ↗</a><script>
+const link=document.getElementById('launch');let args={};
+function send(type,extra={}){window.parent.postMessage({isStreamlitMessage:true,type,...extra},'*')}
+window.addEventListener('message',event=>{
+ if(event.source!==window.parent||event.data.type!=='streamlit:render')return;
+ args=event.data.args||{};
+ if(args.font_css_url)document.getElementById('bizmar-fonts').href=args.font_css_url;
+ const valid=!args.disabled&&typeof args.url==='string'&&/^https:\/\/wa\.me\/60\d+\?text=/.test(args.url);
+ if(valid)link.href=args.url;else link.removeAttribute('href');
+ link.setAttribute('aria-disabled',String(!valid));
+ send('streamlit:setFrameHeight',{height:52});
+});
+link.addEventListener('click',event=>{
+ if(link.getAttribute('aria-disabled')==='true'){event.preventDefault();return}
+ const eventId=crypto.randomUUID?crypto.randomUUID():String(Date.now())+'-'+Math.random().toString(36).slice(2);
+ send('streamlit:setComponentValue',{dataType:'json',value:{action:'opened',event_id:eventId,message_id:args.message_id,version:args.version}});
+});
+send('streamlit:componentReady',{apiVersion:1});send('streamlit:setFrameHeight',{height:52});
+</script></body></html>
