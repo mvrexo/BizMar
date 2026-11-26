@@ -1,7 +1,5 @@
 # BizMar – Business Management & Analytics Dashboard
 
-**Urus Bijak, Bisnes Melonjak.**
-
 BizMar is a web-based business management and analytics dashboard
 developed using Python and Streamlit. It helps small business owners
 manage daily business operations, monitor sales performance and
