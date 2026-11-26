@@ -77,17 +77,20 @@ from auth import (
 # BIZMAR - AUTHENTICATION
 # =====================================
 
-google_logged_in = not LOCAL_AUTH and st.user.is_logged_in
-google_authorized = (
-    not LOCAL_AUTH
-    and is_authorized_google_user(st.user, st.secrets["OWNER_EMAIL"])
-)
-
-supabase_authorized = False if LOCAL_AUTH else is_authorized_supabase_user()
 google_login_enabled = (
     not LOCAL_AUTH
     and google_oauth_configured(st.secrets.get("auth", {}))
 )
+google_logged_in = False
+google_authorized = False
+if google_login_enabled:
+    google_user = st.user
+    google_logged_in = google_user.is_logged_in
+    google_authorized = is_authorized_google_user(
+        google_user, st.secrets["OWNER_EMAIL"]
+    )
+
+supabase_authorized = False if LOCAL_AUTH else is_authorized_supabase_user()
 
 if LOCAL_AUTH:
     from local_auth import verify
@@ -220,7 +223,7 @@ if st.sidebar.button(
 
     sign_out_email()
 
-    if st.user.is_logged_in:
+    if google_logged_in:
         st.logout()
     else:
         st.rerun()

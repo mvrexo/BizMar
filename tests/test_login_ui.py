@@ -1,8 +1,10 @@
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 from streamlit.testing.v1 import AppTest
 
+ROOT = Path(__file__).resolve().parents[1]
 
 LOGIN_SOURCE = '''
 import streamlit as st
@@ -17,6 +19,19 @@ render_login(sign_in, google_enabled=True)
 
 
 class LoginUiTests(unittest.TestCase):
+    def test_app_starts_with_supabase_secrets_but_without_google_oauth(self):
+        secrets = {
+            'SUPABASE_URL': 'https://synthetic-project.supabase.co',
+            'SUPABASE_ANON_KEY': 'synthetic-anon-key',
+            'OWNER_EMAIL': 'owner@example.test',
+        }
+        with patch('streamlit.secrets', secrets):
+            app = AppTest.from_file(str(ROOT / 'app.py')).run(timeout=60)
+
+        self.assertFalse(app.exception, [str(error.value) for error in app.exception])
+        self.assertIn('Log In →', [button.label for button in app.button])
+        self.assertNotIn('Continue with Google', [button.label for button in app.button])
+
     def test_login_has_no_prefilled_email_and_submits_through_form(self):
         app = AppTest.from_string(LOGIN_SOURCE).run()
         self.assertFalse(app.exception)
